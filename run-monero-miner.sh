@@ -133,6 +133,16 @@ build_xmrig_command() {
         cmd="$cmd --cpu-affinity=$CPU_AFFINITY"
     fi
     
+    # Apple Silicon specific optimizations
+    if [[ $(uname -m) == "arm64" ]]; then
+        cmd="$cmd --randomx-no-rdmsr"           # Disable MSR (not available on ARM)
+        cmd="$cmd --cpu-memory-pool=false"      # Disable memory pooling
+        cmd="$cmd --randomx-no-numa"            # Disable NUMA optimizations
+        
+        # Use Apple Silicon optimized scratchpad
+        cmd="$cmd --randomx-scratchpad-prefetch-mode=1"
+    fi
+
     # Additional CPU optimizations
     cmd="$cmd --cpu-priority=2"  # Set higher CPU priority (0-5, where 5 is highest)
     cmd="$cmd --donate-level=1"  # Set donation level (1% default)
