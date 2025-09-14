@@ -1,9 +1,11 @@
 #!/bin/bash
-# P2Pool Mini + XMRig Monero Mining Script on MacOS
+# Enhanced P2Pool Mini + XMRig Mining Script MacOS
+# Make sure to set your wallet address below!
 
 # Configuration
-WALLET_ADDRESS="XYZ"  # Replace with your actual Monero wallet address
+WALLET_ADDRESS="ABC"  # Replace with your actual wallet address
 P2POOL_HOST="127.0.0.1"
+P2POOL_STRATUM_PORT="3333"
 XMRIG_API_PORT="44444"
 XMRIG_ACCESS_TOKEN="mining_stats_token_$(date +%s)"
 XMRIG_DIFFICULTY=""  # Optional: set custom difficulty like "x+10000"
